@@ -1,0 +1,63 @@
+html, body {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+}
+
+ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 20;
+    overflow: hidden;
+    background-color: black;
+    height: 12vh;
+}
+
+a {
+    display: block;
+    color: white;
+    padding: 5vh;
+    font-family: verdana;
+    font-size: 18px;
+    text-decoration: none;
+    float: left;
+}
+
+a:hover:not(.active) {
+    background-color: grey;
+}
+
+.background {
+    display: flex;
+    flex-direction: row;
+    margin: 20px;
+    justify-content: space-around;
+}
+
+.chatt {
+    height: 50vh;
+    width: 60vh;
+    padding: 5vh;
+    border: 5px solid black;
+    overflow: scroll;
+    
+    
+}
+
+.notis {
+    height: 75vh;
+    width: 40vh;
+    border: 5px solid black;    
+    text-align: center;
+    font-family: verdana;    
+}
+
+.users-online {
+    height: 75vh;
+    width: 40vh;
+    border: 5px solid black;
+    overflow: scroll;
+    text-align: center;    
+    font-family: verdana;
+    
+}
