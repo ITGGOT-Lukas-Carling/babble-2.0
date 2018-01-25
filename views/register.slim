@@ -1,0 +1,15 @@
+-if session[:logged] != true   
+    form action="/register" method="POST"
+        input type="text" name="reg-username" placeholder="Username"
+        input type="password" name="reg-password1" placeholder="Password"
+        input type="password" name="reg-password2" placeholder="Confirm Password"    
+        input type="submit" value="Register"
+
+-if session[:logged]
+    p Hello #{username}
+    form action="/notes" method="GET"
+        input type="submit" value="Notes"
+    form action="/logout" method="POST"
+        input type="submit" value="Log out"
+
+p #{error}

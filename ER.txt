@@ -1,0 +1,56 @@
+user //db information about the user, should not be shown on the website
+    id:
+    name:
+    password:
+    score:
+    votes:
+    admin:
+    friend_id:
+    level:
+
+posts //posts in a chatroom - like a chatroom
+    id:
+    user_id:
+    description:
+    room:
+    votes:
+
+user_information //information about the user - interests, age, etc...
+    title:
+    name:
+    bio:
+    user_id:
+
+user_posts //personal posts from the user - like twitter
+    user_id:
+    desc:
+    post_id:
+
+friends //friends to the user
+    user_id:
+    friend_id:
+
+    #   USERS
+    #   ------------------
+    #   | user_id | name |
+    #   ------------------
+    #   | 1       | John |
+    #   ------------------
+    #   | 2       | Mary |
+    #   ------------------
+    #   | 3       | Carl |
+    #   ------------------
+    #
+    #   FRIENDS
+    #   -----------------------
+    #   | user_id | friend_id |
+    #   -----------------------
+    #   | 1       | 3         |
+    #   -----------------------
+    #   | 1       | 2         |
+    #   -----------------------
+
+###in future
+room
+    user_id:
+    post_id:
