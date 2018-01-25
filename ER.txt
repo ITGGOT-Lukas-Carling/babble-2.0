@@ -54,3 +54,6 @@ friends //friends to the user
 room
     user_id:
     post_id:
+
+
+2
