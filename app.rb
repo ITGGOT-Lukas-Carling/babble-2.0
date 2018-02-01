@@ -8,14 +8,45 @@ class App < Sinatra::Base
 	set :sockets, []
 
 
-	get('/ws') do
+	# get('/ws') do
+	# 	if session[:username].to_s==""
+	# 		username ="guest"
+	# 	else
+	# 		username = session[:username].to_s
+	# 	end
+	# 	if !request.websocket?
+	# 	  erb(:chat)
+	# 	else
+	# 	  request.websocket do |ws|
+	# 		ws.onopen do
+	# 		  ws.send("Hello World!")
+	# 		  settings.sockets << ws
+	# 		end
+	# 		ws.onmessage do |msg|
+	# 		  send = session[:username].to_s+": " + msg
+	# 		  EM.next_tick { settings.sockets.each{|s| s.send(send) } }
+	# 		end
+	# 		ws.onclose do
+	# 		  warn("websocket closed")
+	# 		  settings.sockets.delete(ws)
+	# 		end
+	# 	  end
+	# 	end
+	#   end
+	  
+	
+	get('/home') do
+		erb(:test)
+	end
+
+	get('/') do
 		if session[:username].to_s==""
 			username ="guest"
 		else
-			#username = session[:username].to_s
+			username = session[:username].to_s
 		end
 		if !request.websocket?
-		  erb(:chat)
+		  erb(:index)
 		else
 		  request.websocket do |ws|
 			ws.onopen do
@@ -32,15 +63,6 @@ class App < Sinatra::Base
 			end
 		  end
 		end
-	  end
-	  
-	
-	get('/home') do
-		erb(:test)
-	end
-
-	get('/') do
-			erb(:index)
 	end
 
 	get('/login') do
