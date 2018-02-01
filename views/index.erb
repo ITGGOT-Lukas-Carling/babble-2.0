@@ -2,7 +2,6 @@
 <html>
     <head>
         <meta charset="UTF-8" >  
-        <link rel="stylesheet" href="main.css">
         <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
         <meta name="viewport" content="width=device-width, initial-scale=1">         
     </head>
@@ -19,7 +18,11 @@
 
         <div class="background">
             <div class="chatt">
-
+                <h1>Simple Echo & Chat Server</h1>
+                <form id="form">
+                <input type="text" id="input" value="" placeholder="Send a message..."></input>
+                </form>
+            <div id="msgs"></div>
             </div>
             <div class="notis">
                 Notifications
@@ -29,4 +32,28 @@
             </div>
         </div>
     </body>
+    <script type="text/javascript">
+    window.onload = function(){
+      (function(){
+        var show = function(el){
+          return function(msg){ el.innerHTML = msg + '<br />' + el.innerHTML; }
+        }(document.getElementById('msgs'));
+
+        var ws = new WebSocket('ws://' + window.location.host + window.location.pathname);
+        ws.onopen = function()  { show('websocket opened'); };
+        ws.onclose = function()  { show('websocket closed'); }
+        ws.onmessage = function(m) { show(m.data); }; // { show(m.data); }; --> { show('websocket message: 'm.data); };
+
+        var sender = function(f){
+          var input = document.getElementById('input');
+          input.onclick = function(){ input.value = "" };
+          f.onsubmit = function(){
+            ws.send(input.value);
+            input.value = "";
+            return false;
+          }
+        }(document.getElementById('form'));
+      })();
+    }
+  </script>
 </html>
