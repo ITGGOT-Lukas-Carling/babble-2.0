@@ -93,6 +93,9 @@ class App < Sinatra::Base
 			log_error = "Passwords do not match"
 			redirect('/register')
 		end
+		session[:logged] = true
+		session[:username] = reg_username
+		log_error = ""
 		redirect('/')
 	end
 
