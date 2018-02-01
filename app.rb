@@ -40,7 +40,7 @@ class App < Sinatra::Base
 	end
 
 	get('/') do
-		"Hello, Grillkorv!"
+			erb(:index)
 	end
 
 	get('/login') do
