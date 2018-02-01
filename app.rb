@@ -12,10 +12,10 @@ class App < Sinatra::Base
 		if session[:username].to_s==""
 			username ="guest"
 		else
-			username = session[:username].to_s
+			#username = session[:username].to_s
 		end
 		if !request.websocket?
-		  erb :index
+		  erb(:chat)
 		else
 		  request.websocket do |ws|
 			ws.onopen do
@@ -23,7 +23,7 @@ class App < Sinatra::Base
 			  settings.sockets << ws
 			end
 			ws.onmessage do |msg|
-			  send = username+": " + msg
+			  send = session[:username].to_s+": " + msg
 			  EM.next_tick { settings.sockets.each{|s| s.send(send) } }
 			end
 			ws.onclose do
