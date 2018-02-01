@@ -12,7 +12,7 @@ posts //posts in a chatroom - like a chatroom
     id:
     user_id:
     description:
-    room:
+    title:
     votes:
 
 user_information //information about the user - interests, age, etc...
