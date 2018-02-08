@@ -149,6 +149,7 @@ class App < Sinatra::Base
 			if  password_digest == log_password
 				session[:logged] = true
 				session[:username] = log_username
+				session[:online] = true
 				log_error = ""
 			else
 				log_error = "Wrong username or password"
@@ -161,6 +162,7 @@ class App < Sinatra::Base
 	post('/logout') do
 		log_error = ""
 		session[:logged] = false
+		session[:online] = false
 		session[:username] = "guest"
 		redirect('/login')
 	end
