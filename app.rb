@@ -1,5 +1,5 @@
 class App < Sinatra::Base
-	enable :sessions
+	enable	:sessions
 	log_username = ""
 	log_error = ""
 	username = "HELLO"
@@ -39,7 +39,8 @@ class App < Sinatra::Base
 		erb(:test)
 	end
 
-	get('/') do
+
+	get('/index') do
 		if session[:username].to_s==""
 			username ="guest"
 		else
@@ -63,6 +64,42 @@ class App < Sinatra::Base
 			end
 		  end
 		end
+	end
+
+
+
+	get('/') do
+		redirect('/index') 
+			# Redirects to /index because of the linking in other files, makes it easier
+			# To understand where you are linking. 
+
+			   # Example - links user to '/index' instead of '/' so it is obvious where you are linking (the index)
+
+
+
+			   # if session[:username].to_s==""
+		# 	username ="guest"
+		# else
+		# 	username = session[:username].to_s
+		# end
+		# if !request.websocket?
+		#   erb(:index)
+		# else
+		#   request.websocket do |ws|
+		# 	ws.onopen do
+		# 	  ws.send("Hello World!")
+		# 	  settings.sockets << ws
+		# 	end
+		# 	ws.onmessage do |msg|
+		# 	  send = session[:username].to_s+": " + msg
+		# 	  EM.next_tick { settings.sockets.each{|s| s.send(send) } }
+		# 	end
+		# 	ws.onclose do
+		# 	  warn("websocket closed")
+		# 	  settings.sockets.delete(ws)
+		# 	end
+		#   end
+		# end
 	end
 
 	get('/login') do
@@ -106,7 +143,7 @@ class App < Sinatra::Base
 		password = db.execute("SELECT password FROM users WHERE username IS '#{log_username}'")
 		if password[0] == nil
 			log_error = "Wrong username or password"
-			redirect('/')
+			redirect('/login')
 		else
 			password_digest = BCrypt::Password.new(password[0][0])
 			if  password_digest == log_password
@@ -115,6 +152,7 @@ class App < Sinatra::Base
 				log_error = ""
 			else
 				log_error = "Wrong username or password"
+				redirect('/login')
 			end
 		redirect('/')
 		end
@@ -124,7 +162,7 @@ class App < Sinatra::Base
 		log_error = ""
 		session[:logged] = false
 		session[:username] = "guest"
-		redirect('/')
+		redirect('/login')
 	end
 
 
