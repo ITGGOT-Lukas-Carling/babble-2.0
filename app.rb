@@ -55,7 +55,7 @@ class App < Sinatra::Base
 			  settings.sockets << ws
 			end
 			ws.onmessage do |msg|
-			  send = session[:username].to_s+": " + msg
+			  send = session[:username].to_s + ": " + msg
 			  EM.next_tick { settings.sockets.each{|s| s.send(send) } }
 			end
 			ws.onclose do
@@ -70,36 +70,6 @@ class App < Sinatra::Base
 
 	get('/') do
 		redirect('/index') 
-			# Redirects to /index because of the linking in other files, makes it easier
-			# To understand where you are linking. 
-
-			   # Example - links user to '/index' instead of '/' so it is obvious where you are linking (the index)
-
-
-
-			   # if session[:username].to_s==""
-		# 	username ="guest"
-		# else
-		# 	username = session[:username].to_s
-		# end
-		# if !request.websocket?
-		#   erb(:index)
-		# else
-		#   request.websocket do |ws|
-		# 	ws.onopen do
-		# 	  ws.send("Hello World!")
-		# 	  settings.sockets << ws
-		# 	end
-		# 	ws.onmessage do |msg|
-		# 	  send = session[:username].to_s+": " + msg
-		# 	  EM.next_tick { settings.sockets.each{|s| s.send(send) } }
-		# 	end
-		# 	ws.onclose do
-		# 	  warn("websocket closed")
-		# 	  settings.sockets.delete(ws)
-		# 	end
-		#   end
-		# end
 	end
 
 	get('/login') do
